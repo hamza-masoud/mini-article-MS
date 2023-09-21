@@ -13,3 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::prefix('articles')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Api\ArticleController::class, 'index']);
+    Route::get('/{article:slug}/comments', [\App\Http\Controllers\Api\ArticleController::class, 'get_comments']);
+});
