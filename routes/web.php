@@ -37,3 +37,13 @@ Route::middleware('auth')->group(function () {
 
 });
 
+
+Route::middleware('admin')->prefix('admin')->as('admin.')->group(function () {
+
+    Route::get('articles', [\App\Http\Controllers\Web\Admin\ArticleController::class, 'index'])->name('articles.index');
+    Route::get('articles/{article:slug}/show', [\App\Http\Controllers\Web\Admin\ArticleController::class, 'show'])->name('articles.show');
+    Route::put('articles/{article:slug}/{status}', [\App\Http\Controllers\Web\Admin\ArticleController::class, 'update'])->name('articles.change_status')
+        ->where('status', 'approve|reject');
+});
+
+
