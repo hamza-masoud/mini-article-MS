@@ -20,3 +20,5 @@ Route::prefix('auth')->as('auth.')->group(function () {
     Route::post('logout', [\App\Http\Controllers\Web\AuthController::class, 'logout'])->name('logout')->middleware('auth');
 });
 
+Route::get('home', [\App\Http\Controllers\Web\HomeController::class, 'index'])->name('home');
+Route::get('home/article/{article:slug}', [\App\Http\Controllers\Web\HomeController::class, 'show'])->name('home-article-show');
