@@ -27,6 +27,13 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('articles', \App\Http\Controllers\Web\ArticleController::class);
 
+    Route::prefix('articles')->as('articles.')->group(function () {
+
+        Route::post('{article:slug}/comments/create', [\App\Http\Controllers\Web\CommentController::class, 'store'])->name('comments.create');
+        Route::put('{article:slug}/comments/{comment}/update', [\App\Http\Controllers\Web\CommentController::class, 'update'])->name('comments.update');
+        Route::delete('{article:slug}/comments/{comment}/delete', [\App\Http\Controllers\Web\CommentController::class, 'destroy'])->name('comments.destroy');
+
+    });
 
 });
 
