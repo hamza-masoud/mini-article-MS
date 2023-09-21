@@ -22,3 +22,11 @@ Route::prefix('auth')->as('auth.')->group(function () {
 
 Route::get('home', [\App\Http\Controllers\Web\HomeController::class, 'index'])->name('home');
 Route::get('home/article/{article:slug}', [\App\Http\Controllers\Web\HomeController::class, 'show'])->name('home-article-show');
+
+Route::middleware('auth')->group(function () {
+
+    Route::resource('articles', \App\Http\Controllers\Web\ArticleController::class);
+
+
+});
+
